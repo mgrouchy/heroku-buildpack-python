@@ -182,7 +182,10 @@ source $BIN_DIR/steps/gdal
 source $BIN_DIR/steps/pip-install
 
 # Django collectstatic support.
-sub-env $BIN_DIR/steps/collectstatic
+# Run this synchronously, please.
+echo "SYNCHRONOUSLY running collectstatic..."
+source $BIN_DIR/steps/collectstatic
+echo "SYNCHRONOUSLY Finished running collectstatic."
 
 
 # ### Finalize
@@ -231,4 +234,3 @@ if [[ ! "$DOCKER_BUILD" ]]; then
   bpwatch stop anvil_appdir_commit
   bpwatch stop compile
 fi
-
