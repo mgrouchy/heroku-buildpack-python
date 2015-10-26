@@ -183,9 +183,7 @@ source $BIN_DIR/steps/pip-install
 
 # Django collectstatic support.
 # Run this synchronously, please.
-echo "SYNCHRONOUSLY running collectstatic..."
 sub-env-synchronous $BIN_DIR/steps/collectstatic
-echo "SYNCHRONOUSLY Finished running collectstatic."
 
 
 # ### Finalize
