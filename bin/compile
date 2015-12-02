@@ -172,7 +172,7 @@ pip install django-pipeline==1.3.25
 echo "-----> Preparing static assets"
 
 echo "       Running collectstatic..."
-python $MANAGE_FILE collectstatic --noinput  2>&1 | sed '/^Copying/d;/^$/d;/^ /d' | indent
+python manage.py collectstatic --noinput  2>&1 | sed '/^Copying/d;/^$/d;/^ /d' | indent
 
 # Uninstall removed dependencies with Pip.
 source $BIN_DIR/steps/pip-uninstall
