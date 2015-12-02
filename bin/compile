@@ -163,14 +163,22 @@ source $BIN_DIR/steps/python
 # Sanity check for setuptools/distribute.
 source $BIN_DIR/steps/setuptools
 
+# Pylibmc support.
+source $BIN_DIR/steps/pylibmc
+
+pip install django==1.8.7
+pip install django-pipeline==1.3.25
+
+echo "-----> Preparing static assets"
+
+echo "       Running collectstatic..."
+python $MANAGE_FILE collectstatic --noinput  2>&1 | sed '/^Copying/d;/^$/d;/^ /d' | indent
+
 # Uninstall removed dependencies with Pip.
 source $BIN_DIR/steps/pip-uninstall
 
 # Mercurial support.
 source $BIN_DIR/steps/mercurial
-
-# Pylibmc support.
-source $BIN_DIR/steps/pylibmc
 
 # Libffi support.
 source $BIN_DIR/steps/cryptography
@@ -183,7 +191,7 @@ source $BIN_DIR/steps/pip-install
 
 # Django collectstatic support.
 # Run this synchronously, please.
-sub-env-synchronous $BIN_DIR/steps/collectstatic
+#sub-env-synchronous $BIN_DIR/steps/collectstatic
 
 
 # ### Finalize
